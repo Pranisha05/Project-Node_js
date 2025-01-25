@@ -15,3 +15,12 @@ export const loginUserService = async (loginData) => {
         return {"message": "Login unsuccessful"}
     }
 }
+
+const usersDataList = [
+    {   username:"pranisha",  email: "pranisha@gmail.com"},
+    {   username: "ram",      email: "ram123@gmail.com"} ,
+    {   username: 'prakash',  email: "sprakash@gmail.com"}
+]
+export const allUserService = async () => {
+    return usersDataList;
+}
