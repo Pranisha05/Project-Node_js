@@ -45,7 +45,7 @@ allUserService()
     process.exit(1)
   })
 
-  
+
 export const getRegisterService = async(registerData) =>{
     const hashedPassword = await generateHashForPassword(registerData.password)
     const res = await prisma.user.create({
@@ -60,7 +60,7 @@ export const getRegisterService = async(registerData) =>{
         } 
     })
     const token = generateJwtToken(res.id)
-    return {res,token}
+    return {user:res,token}
 }
 
 export const userProfileService = async (userId) =>{
@@ -70,5 +70,5 @@ export const userProfileService = async (userId) =>{
         },
         omit: {password: true},
     })
-    return {user}
+    return user
 }

@@ -10,4 +10,5 @@ userRouter.get('/allUsers',allUserControlller)
 userRouter.post('/register',registerUserControlller)
 userRouter.get('/:userId',authMiddleWare,getUserprofile)
 
+
 export default userRouter

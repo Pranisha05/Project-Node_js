@@ -20,15 +20,28 @@ enum GenderEnum {
   Other
 }
 
+
 model User {
-  
   id       String      @default(uuid())@unique
   fullName String
   email    String      @unique
   password String
   gender   GenderEnum
+  posts    Post[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
   @@map("users")
+}
+model Post {
+  
+  id       String      @default(uuid())@unique
+  content String
+  likesCount Int @default(0)
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  @@map("posts")
 }
