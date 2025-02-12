@@ -24,7 +24,6 @@ export const loginUserService = async (loginData) => {
         throw new Error("Invalid credentials",{cause: "CustomError"})  
     }
     const token = generateJwtToken(user.id)
-    console.log(token)
     delete user.password
     return{message: "Login succesful",user,token}
     

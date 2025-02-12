@@ -7,7 +7,7 @@ export const authMiddleWare = async (req, res, next) => {
   if (!authToken) {
     res.status(StatusCodes.UNAUTHORIZED).json({ message: "Invalid Token" });
   }
-  console.log(authToken);
+  // console.log(authToken);
   try {
     const payload = jwt.verify(authToken, process.env.JWT_SECRET);
     console.log(payload);

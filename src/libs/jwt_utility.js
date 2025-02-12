@@ -2,7 +2,6 @@ import jsonwebtoken from "jsonwebtoken"
 
 
 export const generateJwtToken =(userId) =>{
-    // console.log(userId)
     const  payload = {
         sub: userId,
         issueAt: new Date()

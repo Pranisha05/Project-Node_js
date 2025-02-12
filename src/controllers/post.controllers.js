@@ -1,11 +1,15 @@
 import { StatusCodes } from "http-status-codes";
-import { createPostService, deletePostByIdService, getAllPostService, getPostByIdService, getPostByPostIdService, updatePostService } from "../services/post.servies.js";
-import errorMap from "zod/locales/en.js";
-import { createPostSchema } from "../schemas/post.schemas.js";
+import {createPostService,
+        deletePostByIdService,
+        getAllPostService, 
+        getPostByIdService, 
+        getPostByPostIdService, 
+        updatePostService } from "../services/post.servies.js";
+import { createPostSchema, updatePostSchema } from "../schemas/post.schemas.js";
 
 export const getAllPostController = async (req,res,next) =>{
     try{
-        const posts = await getAllPostService();
+        const posts = await getAllPostService(req.query);
         res.status(StatusCodes.OK).json(posts)
     }
     catch(error){
@@ -48,6 +52,7 @@ export const getPostByIdController = async (req,res,next) =>{
 }
 
 export const updatePostController = async (req,res,next) =>{
+    updatePostSchema.parse(req.body)
     try{
         const data= await updatePostService(req.params.postId, req.userId, req.body)
         res.status(StatusCodes.OK).json(data)
